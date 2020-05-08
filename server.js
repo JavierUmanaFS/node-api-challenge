@@ -2,7 +2,7 @@ const express = require('express');
 
 const server = express();
 
-// const router 
+const projectRouter = require('./projects/projectRouter.js'); 
 // const router
 
 server.use(express.json());
@@ -12,7 +12,7 @@ server.get('/', (req, res) => {
   res.send(`<h2>Sprint challenge api working </h2>`);
 });
 
-
+server.use('/api/projects', logger, projectRouter);
 
 // Logger middleware
 
@@ -22,3 +22,5 @@ function logger(req, res, next){
   )
   next();
 }
+
+module.exports = server;
