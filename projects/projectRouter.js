@@ -42,6 +42,18 @@ router.put('/:id', (req, res) => {
   })
 })
 
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+
+  db.remove(id)
+  .then(() => {
+    res.status(200).json({ message: "Project has been successfully deleted."})
+  })
+  .catch(() =>{
+    res.status(500).json({ message: "Project could not be deleted."})
+  })
+})
+
 function validateProject(req, res, next){
 
   if(!req.body.name || !req.body.description){
